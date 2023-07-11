@@ -44,6 +44,7 @@ jobs:
           echo "NPMRC_LOCATION=${NPMRC_LOCATION}" >> $GITHUB_ENV
       - run: |
           echo "${NPMRC_LOCATION}"
+          sha512sum "${NPMRC_LOCATION}"
       - name: cleanup
         if: always()
         run: |
