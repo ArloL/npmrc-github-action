@@ -45,6 +45,7 @@ jobs:
       - run: |
           echo "${NPMRC_LOCATION}"
           sha512sum "${NPMRC_LOCATION}"
+          sha512sum ./secret_file.txt
       - name: cleanup
         if: always()
         run: |
