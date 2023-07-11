@@ -1,0 +1,22 @@
+name: Main
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup
+        run: |
+          NPMRC_LOCATION=$(mktemp)
+          echo "${{ secrets.NPMRC_CONTENT }}" > ${NPMRC_LOCATION}
+          echo "NPMRC_LOCATION=${NPMRC_LOCATION}" >> $GITHUB_ENV
+      - run: |
+          echo "${NPMRC_LOCATION}"
+      - name: cleanup
+        if: always()
+        run: |
+          rm -rf "${NPMRC_LOCATION}"
